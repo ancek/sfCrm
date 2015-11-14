@@ -19,6 +19,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 abstract class UserDetails
 {
+    use Traits\TimestampableTrait; 
+    
     /**
      * @var integer
      *
