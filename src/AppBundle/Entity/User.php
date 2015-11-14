@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity
  */
-class User
+class User extends BaseUser
 {
     /**
      * @var integer
@@ -28,6 +29,12 @@ class User
      */
     protected $details;
 
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+    }
+    
     /**
      * Get id
      *
