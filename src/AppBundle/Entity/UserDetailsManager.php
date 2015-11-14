@@ -25,17 +25,6 @@ class UserDetailsManager extends UserDetails
      */
     private $area;
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
     /**
      * Set salary
      *

@@ -18,16 +18,13 @@ class UserDetailsClient extends UserDetails
      */
     private $pesel;
 
-
     /**
-     * Get id
-     *
-     * @return integer
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     * 
+     * @ORM\OneToMany(targetEntity="Agreement", mappedBy="client")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $agreements;
+    
 
     /**
      * Set pesel
@@ -51,5 +48,46 @@ class UserDetailsClient extends UserDetails
     public function getPesel()
     {
         return $this->pesel;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->agreements = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add agreement
+     *
+     * @param \AppBundle\Entity\Agreement $agreement
+     *
+     * @return UserDetailsClient
+     */
+    public function addAgreement(\AppBundle\Entity\Agreement $agreement)
+    {
+        $this->agreements[] = $agreement;
+
+        return $this;
+    }
+
+    /**
+     * Remove agreement
+     *
+     * @param \AppBundle\Entity\Agreement $agreement
+     */
+    public function removeAgreement(\AppBundle\Entity\Agreement $agreement)
+    {
+        $this->agreements->removeElement($agreement);
+    }
+
+    /**
+     * Get agreements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAgreements()
+    {
+        return $this->agreements;
     }
 }

@@ -91,4 +91,14 @@ abstract class UserDetails
     {
         return $this->lastName;
     }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 }
