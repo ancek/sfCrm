@@ -62,6 +62,11 @@ class Attachment
      */
     private $fileUploadedAt;
     
+    /**
+     * @var Agreement 
+     * @ORM\ManyToOne(targetEntity="Agreement", inversedBy="attachments")
+     */
+    private $agreement;
 
     /**
      * Get id
@@ -185,5 +190,29 @@ class Attachment
     public function getFileUploadedAt()
     {
         return $this->fileUploadedAt;
+    }
+
+    /**
+     * Set agreement
+     *
+     * @param \AppBundle\Entity\Agreement $agreement
+     *
+     * @return Attachment
+     */
+    public function setAgreement(\AppBundle\Entity\Agreement $agreement = null)
+    {
+        $this->agreement = $agreement;
+
+        return $this;
+    }
+
+    /**
+     * Get agreement
+     *
+     * @return \AppBundle\Entity\Agreement
+     */
+    public function getAgreement()
+    {
+        return $this->agreement;
     }
 }
