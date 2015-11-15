@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block title_h1 %} Lista agentów {% endblock %} 
+
 {% block body %}
+    
+    <div class='alert alert-info'>Ilość rekordów: <b> {{ agents.getTotalItemCount }} </b></div>
     
     <div class="box-body table-responsive no-padding">
         <table class="table table-hover">
@@ -19,6 +23,10 @@
             {% endfor %}
           
         </table>
+    </div>
+            
+    <div class="navigation">
+        {{ knp_pagination_render(agents) }}
     </div>
     
 {% endblock %}
