@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * UserDetailsAgent
  * 
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserDetailsAgentRepository")
  */
 class UserDetailsAgent extends UserDetails
 {

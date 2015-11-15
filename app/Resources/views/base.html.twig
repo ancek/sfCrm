@@ -6,14 +6,14 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">    
+        
         {% block stylesheets %}
-            
-            <!-- Bootstrap -->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-            <!-- Font Awesome -->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-            <!-- Ionicons -->
-            <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">    
             
             {% stylesheets 
                 '../app/Resources/public/css/AdminLTE.min.css' 
@@ -33,7 +33,13 @@
         
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body class="hold-transition skin-blue sidebar-mini">
+    
+    
+    
+    <body class="hold-transition {% block body_additional_class %}skin-blue sidebar-mini{% endblock %}">
+        
+    {% block main_body %}
+        
     <!-- Site wrapper -->
     <div class="wrapper">
 
@@ -569,12 +575,14 @@
       <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
 
-    <!-- jQuery 2.1.4 -->
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <!-- Bootstrap 3.3.5 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    {% endblock %}
     
     {% block javascripts %}
+        
+        <!-- jQuery 2.1.4 -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <!-- Bootstrap 3.3.5 -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         
         {% javascripts 
             '../app/Resources/public/js/*'
@@ -585,4 +593,7 @@
     {% endblock %}
     
   </body>
+  
+  
+  
 </html>
