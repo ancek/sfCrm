@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 /**
  * Description of AgreementLifeController
  * 
- * @Route('agreement/life')
+ * @Route("agreement/life")
  */
 class AgreementLifeController extends Controller
 {
