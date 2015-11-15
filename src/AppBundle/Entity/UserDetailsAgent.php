@@ -1,23 +1,19 @@
-<?php
-
+<?php 
 namespace AppBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-
 /**
- * UserDetailsAgent
- * 
+ * Class UserDetailsAgent
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserDetailsAgentRepository")
  */
 class UserDetailsAgent extends UserDetails
 {
     /**
-     * @var decimal
+     * @var integer
      *
-     * @ORM\Column(name="commission", type="decimal", scale=2, precision=10)
+     * @ORM\Column(name="commission", type="integer")
      */
     private $commission;
-
+    
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      * 
@@ -26,23 +22,28 @@ class UserDetailsAgent extends UserDetails
     private $agreements;
     
     /**
+     * @var UserDetailsManager
+     * 
+     * @ORM\ManyToOne(targetEntity="UserDetailsManager", inversedBy="agents")
+     */
+    private $manager;
+    
+    /**
      * Set commission
      *
-     * @param string $commission
+     * @param integer $commission
      *
      * @return UserDetailsAgent
      */
     public function setCommission($commission)
     {
         $this->commission = $commission;
-
         return $this;
     }
-
     /**
      * Get commission
      *
-     * @return string
+     * @return integer
      */
     public function getCommission()
     {
@@ -55,7 +56,6 @@ class UserDetailsAgent extends UserDetails
     {
         $this->agreements = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
     /**
      * Add agreement
      *
@@ -66,10 +66,8 @@ class UserDetailsAgent extends UserDetails
     public function addAgreement(\AppBundle\Entity\Agreement $agreement)
     {
         $this->agreements[] = $agreement;
-
         return $this;
     }
-
     /**
      * Remove agreement
      *
@@ -79,7 +77,6 @@ class UserDetailsAgent extends UserDetails
     {
         $this->agreements->removeElement($agreement);
     }
-
     /**
      * Get agreements
      *
@@ -88,5 +85,26 @@ class UserDetailsAgent extends UserDetails
     public function getAgreements()
     {
         return $this->agreements;
+    }
+    /**
+     * Set manager
+     *
+     * @param \AppBundle\Entity\UserDetailsManager $manager
+     *
+     * @return UserDetailsAgent
+     */
+    public function setManager(\AppBundle\Entity\UserDetailsManager $manager = null)
+    {
+        $this->manager = $manager;
+        return $this;
+    }
+    /**
+     * Get manager
+     *
+     * @return \AppBundle\Entity\UserDetailsManager
+     */
+    public function getManager()
+    {
+        return $this->manager;
     }
 }

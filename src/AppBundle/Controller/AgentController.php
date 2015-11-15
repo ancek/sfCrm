@@ -2,8 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ConfigurationInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
@@ -12,15 +12,24 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
  */
 class AgentController extends Controller
 {
-    /*
+    /**
      * @Route("/agent/list", name="agents_list")
-     * @Security("ROLE_ADMIN, ROLE_MANAGER")
+     * @Security("has_role('ROLE_MANAGER')")
      */
     public function listAction(Request $request)
     {
+//        if(!$this->get('security.authorization_checker')->isGranted('ROLE_MANAGER')) {
+//            throw $this->createAccessDeniedException();
+//        }
+        
         $agents = $this
                     ->getDoctrine()
+                    ->getManager()
                     ->getRepository('AppBundle:UserDetailsAgent')
                     ->getAgents( $this->getUser() );
+        
+        return  $this->render('agent/list.html.twig', [
+            'agents' => $agents
+        ]);
     }
 }

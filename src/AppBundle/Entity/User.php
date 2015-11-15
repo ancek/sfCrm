@@ -1,10 +1,7 @@
 <?php
-
 namespace AppBundle\Entity;
-
-use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
-
+use FOS\UserBundle\Model\User as BaseUser;
 /**
  * User
  *
@@ -21,17 +18,16 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
     /**
-     * @var UserDetails; 
+     * @var UserDetails
      * 
-     * @ORM\OneToOne(targetEntity="UserDetails")
+     * @ORM\OneToOne(targetEntity="UserDetails", cascade={"persist"})
      */
     protected $details;
-
     public function __construct()
     {
         parent::__construct();
+        
         // your own logic
     }
     
@@ -44,7 +40,6 @@ class User extends BaseUser
     {
         return $this->id;
     }
-
     /**
      * Set details
      *
@@ -55,10 +50,8 @@ class User extends BaseUser
     public function setDetails(\AppBundle\Entity\UserDetails $details = null)
     {
         $this->details = $details;
-
         return $this;
     }
-
     /**
      * Get details
      *
