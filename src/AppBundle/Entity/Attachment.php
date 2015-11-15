@@ -149,7 +149,7 @@ class Attachment
      */
     public function getFile()
     {
-        return $this->imageFile;
+        return $this->file;
     }
 
     /**

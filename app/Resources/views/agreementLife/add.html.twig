@@ -1,1 +1,29 @@
-{# empty Twig template #}
+{% extends 'base.html.twig' %}
+
+{% block title_h1 %}Umowy na życie - dodawanie{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title"></h3>
+                </div><!-- /.box-header -->
+
+                {{ form_start(form) }}
+
+                    <div class="box-body">
+                        {{ form_widget(form) }}
+                    </div><!-- /.box-body -->
+
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-info pull-left">Zapisz</button>
+                    </div><!-- /.box-footer -->
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
