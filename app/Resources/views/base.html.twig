@@ -216,7 +216,10 @@
           </form>
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
-          <ul class="sidebar-menu">
+          
+          {{ knp_menu_render('AppBundle:MainMenu:menu') }}
+          
+          {#<ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             
             <li>
@@ -228,7 +231,7 @@
                     <i class="fa fa-dashboard"></i> <span>Lista umów</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Umowy na życie</a></li>
+                    <li><a href="{{ path('agreement_life_list') }}"><i class="fa fa-circle-o"></i> Umowy na życie</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Umowy - mienie</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Umowy - komunikacyjne</a></li>
                 </ul>
@@ -249,7 +252,7 @@
                 <a href="{{ path('agents_list') }}"><i class="fa fa-th"></i> <span>Lista Agentów</span></a>
             </li>
             
-          </ul>
+          </ul>#}
         </section>
         <!-- /.sidebar -->
       </aside>

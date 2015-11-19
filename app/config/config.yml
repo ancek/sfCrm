@@ -136,7 +136,7 @@ vich_uploader:
     
     mappings:
         file_map:
-            uri_prefix:         /uploads
+            uri_prefix:         /upload
             upload_destination: file_fs
             namer:              vich_uploader.namer_uniqid
             delete_on_remove:   true

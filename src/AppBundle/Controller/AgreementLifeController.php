@@ -14,12 +14,27 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
  * Description of AgreementLifeController
  * 
  * @Route("agreement/life")
+ * @Security("has_role('ROLE_USER')")
  */
 class AgreementLifeController extends Controller
 {
+    /**
+     * @Route("/list", name="agreement_life_list")
+     */
     public function listAction()
     {
-        //HOMEWORK
+        $agreements = $this->getDoctrine()
+                ->getRepository('AppBundle:AgreementLife')
+                ->findAll();
+        
+        return $this->render('agreementLife/list.html.twig', [
+            'agreements' => $agreements
+        ]);
+    }
+    
+    public function showAction() 
+    {
+        
     }
     
     /**

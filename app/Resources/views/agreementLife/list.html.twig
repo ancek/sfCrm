@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title_h1 %} Lista umów na życie{% endblock %} 
+
+{% block body %}
+    
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+            <tr>
+              <th>ID</th>
+              <th>Numer</th>
+              <th>Data utworzenia</th>
+              <th>Agent</th>
+              <th class='text-right'>Wartość umowy</th>
+              <th>Opcje</th>
+            </tr>
+          
+            {% for agreement in agreements %}
+                <tr>
+                    <td>{{ agreement.id }}</td>
+                    <td>{{ agreement.number }}</td>
+                    <td>{{ agreement.createdAt|date('d-m-Y') }}</td>
+                    <td>{{ agreement.agent.fullName }}</td>
+                    <td class='text-right'>{{ agreement.value|number_format(2, ',', ' ') }}</td>
+                    <td>
+                        <a href="{{ path('agreement_show', {'slug': agreement.slug }) }}" class="btn btn-info">Pokaż</a>
+                        <a href="" class="btn btn-danger">Usuń</a>
+                    </td>
+                </tr>
+            {% endfor %}
+          
+        </table>
+    </div>
+            
+{% endblock %}

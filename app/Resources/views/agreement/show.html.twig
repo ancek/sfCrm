@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title_h1 %}Numer umowy {{ agreement.number }}{% endblock %}
+
+{% block body %}
+    
+    <ul>
+        {% for attachment in agreement.attachments %}
+            
+{#            <li><a href="{{ vich_uploader_asset(attachment, 'file') }}" title="{{ attachment.realFilename }}">{{ attachment.realFilename }}</a></li>#}
+            <li><a target="_blank" href="{{ asset('../web/upload/' ~ attachment.fileName) }}" title="{{ attachment.realFilename }}">{{ attachment.realFilename }}</a></li>
+            
+        {% endfor %}
+    </ul>
+    
+{% endblock %}

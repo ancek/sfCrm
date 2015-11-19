@@ -9,6 +9,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\InheritanceType("SINGLE_TABLE")
@@ -64,6 +65,12 @@ abstract class Agreement
      * @ORM\OneToMany(targetEntity="Attachment", mappedBy="agreement", cascade={"persist"})
      */
     private $attachments;
+    
+    /**
+     * @Gedmo\Slug(fields={"number"})
+     * @ORM\Column(name="slug", type="string", length=40, unique=true)
+     */
+    private $slug;
     
     /**
      * Constructor
@@ -212,5 +219,29 @@ abstract class Agreement
     public function getAttachments()
     {
         return $this->attachments;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Agreement
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }
