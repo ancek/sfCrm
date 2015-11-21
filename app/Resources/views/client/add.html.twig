@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title_h1 %}Tworzenie nowego klienta{% endblock %}
+{% block title_h1 %}{{ 'client.add_title'|trans() }}{% endblock %}
 
 {% block body %}
 
@@ -18,7 +18,7 @@
                     </div><!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-info pull-left">Zapisz</button>
+                        <button type="submit" class="btn btn-info pull-left">{{ 'save'|trans() }}</button>
                     </div><!-- /.box-footer -->
 
                 {{ form_end(form) }}

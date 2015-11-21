@@ -18,4 +18,16 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
         ));
     }
+    
+    /**
+     * @Route ("/set-locale/{locale}", name="set_locale")
+     */
+    public function setLocaleAction($locale, Request $request) 
+    {
+        $session = $request->getSession();
+        
+        $session->set('_locale', $locale);
+        
+        return $this->redirectToRoute('client_add');
+    }
 }

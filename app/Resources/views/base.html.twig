@@ -219,6 +219,9 @@
           
           {{ knp_menu_render('AppBundle:MainMenu:menu') }}
           
+          <a href="{{ path('set_locale', {'locale' : 'pl'}) }}">PL</a>
+          <a href="{{ path('set_locale', {'locale' : 'en'}) }}">EN</a>
+          
           {#<ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             
