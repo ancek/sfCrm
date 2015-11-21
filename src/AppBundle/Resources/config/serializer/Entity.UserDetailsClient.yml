@@ -1,0 +1,8 @@
+AppBundle\Entity\UserDetailsClient:
+    exclusion_policy: ALL
+    properties:
+        pesel:
+            expose: true
+#        agreements:
+#            expose: true
+#            max_depth: 1

@@ -1,3 +1,8 @@
+api_client:
+    prefix: /api/v1
+    type: rest
+    resource: AppBundle\Controller\API\ClientController
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
@@ -11,3 +16,8 @@ _liip_imagine:
 agreement_show:
     path:       /{slug}
     defaults:   { _controller: AppBundle:Agreement:show }
+
+# app/config/routing.yml
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/v1/doc

@@ -18,7 +18,7 @@ framework:
     form:            ~
     csrf_protection: ~
     validation:      { enable_annotations: true }
-    #serializer:      { enable_annotations: true }
+    serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme
@@ -148,3 +148,19 @@ oneup_flysystem:
             adapter: dropbox_adapter
             alias: dropbox_alias
             mount: dropbox_fs
+
+#NelmioApiDocBundle Configuration
+nelmio_api_doc: ~
+
+fos_rest:
+    view:
+        formats:
+            json: true
+    routing_loader:
+        default_format: json
+    serializer:
+        serialize_null: true
+
+jms_serializer:
+    metadata:
+        auto_detection: true
