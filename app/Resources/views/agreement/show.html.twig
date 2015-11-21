@@ -1,16 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title_h1 %}Numer umowy {{ agreement.number }}{% endblock %}
+{% block content_header %}Umowa{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="active">Umowa</li>
+    {% endblock %}
 
 {% block body %}
-    
+
+    <h2>Numer umowy: {{ agreement.number}} </h2>
+
+    Pliki:<br>
     <ul>
-        {% for attachment in agreement.attachments %}
-            
-{#            <li><a href="{{ vich_uploader_asset(attachment, 'file') }}" title="{{ attachment.realFilename }}">{{ attachment.realFilename }}</a></li>#}
-            <li><a target="_blank" href="{{ asset('../web/upload/' ~ attachment.fileName) }}" title="{{ attachment.realFilename }}">{{ attachment.realFilename }}</a></li>
-            
-        {% endfor %}
+    {% for attachment in agreement.attachments %}
+
+{#        <li><a href="{{ vich_uploader_asset(attachment, 'file') }}" title="{{ attachment.realFileName }}">{{ attachment.realFileName }}</a></li>#}
+        <li><a href="{{ asset('../web/upload/' ~ attachment.fileName) }}" title="{{ attachment.realFileName }}">{{ attachment.realFileName }}</a></li>
+{#        <li><a href="{{ path("file_download", {'filename': attachment.fileName}) }}" title="{{ attachment.realFileName }}">{{ attachment.realFileName }}</a></li>#}
+
+    {% endfor %}
     </ul>
-    
 {% endblock %}

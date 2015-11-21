@@ -80,65 +80,71 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-    
+
+# DoctrineExtensionBundle Configuration
 stof_doctrine_extensions:
     default_locale: %locale%
     orm:
         default:
             sluggable: true
             timestampable: true
-    
-#FOS UserBundle Configuration
+
+# FosUserBundle Configuration
 fos_user:
-    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    db_driver: orm
     firewall_name: main
     user_class: AppBundle\Entity\User
-    
-#KNPPaginator Configuration
+
+# knpBundle Configuration
 knp_paginator:
-    page_range: 10                      # default page range used in pagination control
+    page_range: 5
     default_options:
-        page_name: page                # page query parameter name
-        sort_field_name: sort          # sort field query parameter name
-        sort_direction_name: direction # sort direction query parameter name
-        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+        page_name: page
+        sort_field_name: sort
+        sort_direction_name: direction
+        distinct: true
     template:
-        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig     # sliding pagination controls template
-        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
-        
-# KNPMenu Configuration
+        pagination: pagination/admin_lte_pagination.html.twig
+#        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig
+
+# knpMenuBundle
 knp_menu:
-    # use "twig: false" to disable the Twig extension and the TwigRenderer
     twig:
         template: knp_menu.html.twig
-    #  if true, enables the helper for PHP templates
     templating: false
-    # the renderer to use, list is also available by default
     default_renderer: twig
-   
-#OneUpFlySystemBundle Configuration       
+
+# vichUploaderBundle
+vich_uploader:
+    db_driver:  orm
+    storage:    flysystem
+
+    mappings:
+        file_map:
+            uri_prefix:           /upload
+            upload_destination:  file_fs
+            namer:                vich_uploader.namer_uniqid
+            delete_on_remove:    true
+            delete_on_update:    true
+            inject_on_load:      false
+
+# oneUpFlysystemBundle
 oneup_flysystem:
     adapters:
         file_adapter:
             local:
                 directory: %kernel.root_dir%/../web/upload
+        dropbox_adapter:
+            dropbox:
+                client: dropbox_client
+                prefix: ~
 
     filesystems:
         file_fs:
             adapter: file_adapter
-            mount:   file_fs    
-    
-#VichUploader Configuration
-vich_uploader:
-    db_driver:  orm
-    twig:       true
-    storage:    flysystem
-    
-    mappings:
-        file_map:
-            uri_prefix:         /upload
-            upload_destination: file_fs
-            namer:              vich_uploader.namer_uniqid
-            delete_on_remove:   true
-            delete_on_update:   true
-            inject_on_load:     false
+            mount: file_fs
+        dropbox_fs:
+            adapter: dropbox_adapter
+            alias: dropbox_alias
+            mount: dropbox_fs

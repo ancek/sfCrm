@@ -37,6 +37,19 @@ class MainMenu extends ContainerAware
                 'route' => 'agreement_life_add'
             ]
         );
+        
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_MANAGER')) {
+            $menu->addChild('Lista klientów', [
+                'route' => 'agents_list',
+            ]);
+        }
+        
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_AGENT')) {
+            
+            $menu->addChild('Dodaj klienta', [
+                'route' => 'client_add',
+            ]);
+        }
 
         return $menu;
     }
