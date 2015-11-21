@@ -27,6 +27,10 @@ abstract class Agreement
 {
     use Traits\TimestampableTrait; 
     
+    const AGR_TYPE_LIFE = "life";
+    const AGR_TYPE_VEHICLE = "vehicle";
+    const AGR_TYPE_ESTATE = "estate";
+    
     /**
      * @var integer
      *
@@ -78,6 +82,14 @@ abstract class Agreement
     public function __construct()
     {
         $this->attachments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    
+    public static function getTypes () 
+    {
+        return [
+            self::AGR_TYPE_LIFE, self::AGR_TYPE_ESTATE, self::AGR_TYPE_VEHICLE
+        ];
     }
     
     /**

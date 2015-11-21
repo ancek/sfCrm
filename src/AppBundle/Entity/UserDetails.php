@@ -45,6 +45,18 @@ abstract class UserDetails
     private $lastName;
 
     /**
+     * @ORM\OneToMany(targetEntity="Alert", mappedBy="user") 
+     */
+    protected $alerts;
+    
+    /**
+     * @var User
+     * 
+     * @ORM\OneToOne(targetEntity="User", inversedBy="details") 
+     */
+    private $user;
+    
+    /**
      * Set firstName
      *
      * @param string $firstName
@@ -107,5 +119,70 @@ abstract class UserDetails
      */
     public function getFullName () {
         return sprintf('%s %s', $this->getFirstName(), $this->getlastName());
+    }
+    
+    /**
+     * Add alert
+     *
+     * @param \AppBundle\Entity\Alert $alert
+     *
+     * @return User
+     */
+    public function addAlert(\AppBundle\Entity\Alert $alert)
+    {
+        $this->alerts[] = $alert;
+
+        return $this;
+    }
+
+    /**
+     * Remove alert
+     *
+     * @param \AppBundle\Entity\Alert $alert
+     */
+    public function removeAlert(\AppBundle\Entity\Alert $alert)
+    {
+        $this->alerts->removeElement($alert);
+    }
+
+    /**
+     * Get alerts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAlerts()
+    {
+        return $this->alerts;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->alerts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return UserDetails
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
